@@ -4,7 +4,7 @@
 
 import pygame
 from pygame import freetype
-from synth2 import FontState
+from text_utils import FontState
 import numpy as np 
 import matplotlib.pyplot as plt 
 import cPickle as cp
@@ -23,17 +23,17 @@ FS = FontState()
 #plt.figure()
 #plt.hold(True)
 for i in xrange(len(FS.fonts)):
-	print i
-	font = freetype.Font(FS.fonts[i], size=12)
-	h = []
-	for y in ys:
-		h.append(font.get_sized_glyph_height(y))
-	h = np.array(h)
-	m,_,_,_ = np.linalg.lstsq(A,h)
-	models[font.name] = m
-	xs.append(h)
+    print i
+    font = freetype.Font(FS.fonts[i], size=12)
+    h = []
+    for y in ys:
+	    h.append(font.get_sized_glyph_height(y))
+    h = np.array(h)
+    m,_,_,_ = np.linalg.lstsq(A,h)
+    models[font.name] = m
+    xs.append(h)
 
-with open('font_px2pt.cp','w') as f:
-	cp.dump(models,f)
+with open('data/models/my_font_px2pt.cp','w') as f:
+    cp.dump(models,f)
 #plt.plot(xs,ys[i])
 #plt.show()

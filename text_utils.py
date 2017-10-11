@@ -15,6 +15,11 @@ from PIL import Image
 import math
 from common import *
 
+def is_chinese(ch):
+    if u'\u4e00' <= ch <= u'u9fff':
+        return True
+    else:
+        return False
 
 def sample_weighted(p_dict):
     ps = p_dict.keys()
@@ -414,7 +419,7 @@ class FontState(object):
     def __init__(self, data_dir='data'):
 
         char_freq_path = osp.join(data_dir, 'models/char_freq.cp')        
-        font_model_path = osp.join(data_dir, 'models/font_px2pt.cp')
+        font_model_path = osp.join(data_dir, 'models/my_font_px2pt.cp')
 
         # get character-frequencies in the English language:
         with open(char_freq_path,'r') as f:
